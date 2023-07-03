@@ -9,7 +9,7 @@ Create a dictionary with personal descriptions of characters, places and other t
 
 ## Todo:
 
-- [x] Create a cloud database
-- [x] Connect to the database
+- [ ] Create database
+- [ ] Connect to the database
 - [ ] Create classes for books, terms and definitions
 - [ ] Create simple UI with Java Swing

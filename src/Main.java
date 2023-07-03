@@ -13,9 +13,10 @@ public class Main {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
 			Connection conn = DriverManager.getConnection(
-			  "jdbc:mysql://aws.connect.psdb.cloud/reading_dictionary?sslMode=VERIFY_IDENTITY",
-			  "0i9ofeowa18id8hiqt64",
-			  "pscale_pw_FGWJIyqkiOmhc161WNwQxPCNn3sDeu6NmqKZwQ5Macw");
+			// TODO: create local database
+			  "",
+			  "",
+			  "");
 			
 			String sql = "INSERT INTO books (title, author, genre, series, number_in_series) VALUES (?, ?, ?, ?, ?)";
 			
