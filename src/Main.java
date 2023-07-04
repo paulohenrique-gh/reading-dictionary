@@ -9,44 +9,33 @@ public class Main {
 
 	public static void main(String[] args) {
 				
-		try {			
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			
-			Connection conn = DriverManager.getConnection(
-			// TODO: create local database
-			  "",
-			  "",
-			  "");
-			
-			String sql = "INSERT INTO books (title, author, genre, series, number_in_series) VALUES (?, ?, ?, ?, ?)";
-			
-			PreparedStatement preparedStmt = conn.prepareStatement(sql);
-			preparedStmt.setString(1, "The Well Of Ascension");
-			preparedStmt.setString(2, "Brandon Sanderson");
-			preparedStmt.setString(3, "Fantasy");
-			preparedStmt.setString(4, "Mistborn");
-			preparedStmt.setInt(5, 2);			
-			
-			preparedStmt.execute();
-			
-			Statement stmt = conn.createStatement();
-			
-			ResultSet resultSet = stmt.executeQuery("SELECT * FROM books");
-					
-			
-			while (resultSet.next()) {
-				System.out.println(resultSet.getInt(1) + " " + resultSet.getString(2) + " " +
-								   resultSet.getString(3) + " " + resultSet.getString(4) + " " +
-								   resultSet.getString(5) + " " + resultSet.getInt(6));
-			}
-			
-			
-			conn.close();
-		} catch (ClassNotFoundException e) {
-			System.out.println(e);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		Character kaladin = new Character("Kaladin");
+				
+		System.out.println("Character name: " + kaladin.getName());
+		
+		kaladin.setName("Caladin");
+		
+		System.out.println("New name: " + kaladin.getName());
+		
+		kaladin.setName("Kaladin");
+		kaladin.addNickname("Bridge Boy");
+		kaladin.addNickname("Bridge Boy");
+		kaladin.addNickname("Sad Boy");
+		
+		System.out.println("Back to the old name: " + kaladin.getName());
+		System.out.println("Nicknames: ");
+		kaladin.getNicknames().forEach(nickname -> 
+					System.out.println("- " + nickname)
+				);
+		
+		kaladin.addBook(new Book("The Way of Kings", new Author ("Brandon Sanderson")));
+		kaladin.addBook(new Book("Words of Radiance", new Author ("Brandon Sanderson")));
+		
+		System.out.println("Books this character is in: ");
+		kaladin.getBooks().forEach(book ->
+					System.out.println("- " + book.getTitle())
+				);
+		
 
 	}
 

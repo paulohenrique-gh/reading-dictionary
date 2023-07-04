@@ -9,7 +9,8 @@ Create a dictionary with personal descriptions of characters, places and other t
 
 ## Todo:
 
-- [ ] Create database
-- [ ] Connect to the database
+- [ ] Estabilish connection with local database
 - [ ] Create classes for books, terms and definitions
-- [ ] Create simple UI with Java Swing
+- [ ] Implement funcionalities: add, search, edit, delete
+- [ ] (optional) Create simple graphical interface
+- [ ] (optional) Change to cloud database
