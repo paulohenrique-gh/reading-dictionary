@@ -36,6 +36,23 @@ public class Main {
 					System.out.println("- " + book.getTitle())
 				);
 		
+		kaladin.addNote(new Note("Currently a slave working in Bridge Four"));
+		kaladin.addNote(new Note("Has a spren named Syl"));
+		kaladin.addNote(new Note("Knows how to use the lance"));
+		
+		System.out.println("Your notes on " + kaladin.getName() + ": ");
+		kaladin.getNotes().forEach(note ->
+					System.out.println("- " + note.getDescription() + " (created at: " + note.getCreatedAt() + ")")
+				);
+		
+		System.out.println("====================================");
+		
+		Place shatteredPlains = new Place("Shattered Plains");
+		System.out.println("Place name: " + shatteredPlains.getName());
+		
+		shatteredPlains.setName("The Shattered Plains");
+		System.out.println("New place name: " + shatteredPlains.getName());
+		
 
 	}
 

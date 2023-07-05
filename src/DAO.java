@@ -10,6 +10,7 @@ public class DAO {
 	private String url;
 	private String username;
 	private String password;
+	private Connection connection;
 	
 	public DAO(String url, String username, String password) {
 		this.url = url;
