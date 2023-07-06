@@ -11,14 +11,8 @@ public class Dictionary {
 	}
 
 	// Add entry to dictionary.
-	// If key already exists, add entry note to existing list of entries
 	public void addEntry(Entry entry) {
 		if (this.entries.containsKey(entry)) {
-//			entry.getNotes().forEach(e -> {
-//				if (this.entries.get(entry).contains(e)) {
-//					this.entries.get(entry).add(e);
-//				}
-//			});
 			return;
 		}
 		
@@ -41,7 +35,7 @@ public class Dictionary {
 			}
 		}
 		
-		return "Not found.";
+		return "";
 	}
 
 	
