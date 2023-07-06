@@ -9,8 +9,10 @@ Create a dictionary with personal descriptions of characters, places and other t
 
 ## Todo:
 
-- [ ] Estabilish connection with local database
-- [ ] Create classes for books, terms and definitions
-- [ ] Implement funcionalities: add, search, edit, delete
-- [ ] (optional) Create simple graphical interface
-- [ ] (optional) Change to cloud database
+- [x] Create classes for entry, book, author and dictionary
+- [ ] Create terminal user interface
+- [ ] Output dictionary to csv file
+- [ ] Implement option to export dictionary to PDF
+- [ ] (optional) Create graphical user interface with Java Swing
+
+
