@@ -1,10 +1,3 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -82,6 +75,7 @@ public class Main {
 		Dictionary dictionary = new Dictionary();
 		
 		dictionary.addEntry(kaladin);
+		dictionary.addEntry(shatteredPlains);
 		
 		System.out.println("Search Kaladin: ");
 		System.out.println(dictionary.search(kaladin.getName()));
@@ -90,6 +84,18 @@ public class Main {
 		System.out.println();
 		System.out.println("Search Kaladin: ");
 		System.out.println(dictionary.search(kaladin.getName()));
+		
+		System.out.println("Search The Shattered Plains: ");
+		System.out.println(dictionary.search("The Shattered Plains"));
+		
+		shatteredPlains.addNote(new Note("Where the main events happen"));
+		System.out.println("Search The Shattered Plains: ");
+		System.out.println(dictionary.search("The Shattered Plains"));
+		
+		System.out.println("====================================");
+		System.out.println(kaladin);
+		System.out.println(shatteredPlains);
+		
 	}
 
 }

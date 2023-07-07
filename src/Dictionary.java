@@ -4,14 +4,14 @@ import java.util.Map;
 
 public class Dictionary {
 	
-	private Map<Entry, List<Note>> entries;
+	private Map<Term, List<Note>> entries;
 	
 	public Dictionary() {
 		this.entries = new HashMap<>();
 	}
 
 	// Add entry to dictionary.
-	public void addEntry(Entry entry) {
+	public void addEntry(Term entry) {
 		if (this.entries.containsKey(entry)) {
 			return;
 		}
@@ -22,8 +22,12 @@ public class Dictionary {
 	
 	public String search(String search){
 		
-		for (Entry entry : this.entries.keySet()) {
+		for (Term entry : this.entries.keySet()) {
 			if (entry.getName().equals(search)) {
+				if (entry.getNotes().isEmpty()) {
+					return "No notes for this term yet.";
+				}
+				
 				StringBuilder notes = new StringBuilder();
 				this.entries.get(entry).forEach(note -> {
 					notes.append("- " + note.getDescription());
@@ -37,6 +41,5 @@ public class Dictionary {
 		
 		return "";
 	}
-
 	
 }

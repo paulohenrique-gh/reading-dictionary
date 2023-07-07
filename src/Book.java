@@ -5,7 +5,7 @@ public class Book {
 	
 	private String title;
 	private Author author;
-	private List<Entry> entries;
+	private List<Term> entries;
 	
 	public Book(String title, Author author) {
 		this.title = title;
@@ -29,7 +29,7 @@ public class Book {
 		this.author = author;
 	}
 	
-	public List<Entry> getEntries() {
+	public List<Term> getEntries() {
 		return this.entries;
 	}
 	

@@ -2,14 +2,14 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Entry {
+public class Term {
 	
 	private String name;
 	private List<String> nicknames;
 	private List<Book> books;
 	private List<Note> notes;
 	
-	public Entry(String name) {
+	public Term(String name) {
 		this.name = name;
 		this.nicknames = new ArrayList<>();
 		this.books = new ArrayList<>();
@@ -56,4 +56,26 @@ public class Entry {
 		this.notes.add(note);
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder fullEntry = new StringBuilder();
+		fullEntry.append(this.name + ": \n");
+		fullEntry.append("Also known as: \n");
+		this.nicknames.forEach(nickname -> {
+			fullEntry.append("- " + nickname);
+			fullEntry.append("\n");
+		});
+		fullEntry.append("Books featuring " + this.name + ": \n");
+		this.books.forEach(book -> {
+			fullEntry.append("- " + book.getTitle());
+			fullEntry.append("\n");
+		});
+		fullEntry.append("Your notes on " + this.getName() + ": \n");
+		this.notes.forEach(note -> {
+			fullEntry.append("- " + note.getDescription());
+			fullEntry.append("\n");
+		});
+		
+		return fullEntry.toString();
+	}
 }
