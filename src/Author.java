@@ -1,14 +1,16 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Author {
 	
 	private String name;
 	private List<Book> books;
 		
-	public Author(String name) {
+	public Author(String name, Shelf shelf) {
 		this.name = name;
 		this.books = new ArrayList<>();
+		addBooksFromShelf(shelf);
 	}
 	
 	public String getName() {
@@ -19,8 +21,15 @@ public class Author {
 		this.name = name;
 	}
 	
-	public List<Book> getBooks() {
-		return this.books;
+	// Add books shelf that have this author
+	public void addBooksFromShelf(Shelf shelf) {
+		Map<Integer, Book> bookMap = shelf.getBooks();
+		
+		bookMap.keySet().forEach(id -> {
+			if (bookMap.get(id).getAuthor() == this) {
+				this.books.add(bookMap.get(id));
+			}
+		});
 	}
 	
 	public void addBook(Book book) {

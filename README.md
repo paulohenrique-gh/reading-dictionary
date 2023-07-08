@@ -10,7 +10,7 @@ Create a dictionary with personal descriptions of characters, places and other t
 ## Todo:
 
 - [x] Create classes for entry, book, author and dictionary
-- [ ] Create terminal user interface
+- [ ] Create terminal user interface - WIP
 - [ ] Output dictionary to csv file
 - [ ] Implement option to export dictionary to PDF
 - [ ] (optional) Create graphical user interface with Java Swing
