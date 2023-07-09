@@ -1,16 +1,19 @@
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Book {
 	
 	private String title;
 	private Author author;
-	private List<Term> entries;
+	private Map<Integer, Term> entries;
+	private int entryId;
 	
 	public Book(String title, Author author) {
 		this.title = title;
 		this.author = author;
-		this.entries = new ArrayList<>();
+		this.entries = new HashMap<>();
+		entryId = 1;
 	}
 	
 	public String getTitle() {
@@ -29,16 +32,21 @@ public class Book {
 		this.author = author;
 	}
 	
-	public List<Term> getEntries() {
+	public Map<Integer, Term> getEntries() {
 		return this.entries;
 	}
 	
-	public void setEntries() {
+	public void addEntry(Term entry) {
 		// TODO - create a class Dictionary,
 		// after instantiating an object of Dictionary, pass it as argument
 		// to setEntries. The method needs to scan the entries and get the ones that
 		// have this book (Entry class has an attribute "entries" that is an array of Books)
-
+		this.entries.putIfAbsent(this.entryId, entry);
+		this.entryId++;
+	}
+	
+	public Term searchEntry(int bookId) {
+		return this.entries.getOrDefault(bookId, null);
 	}
 }
 

@@ -28,18 +28,12 @@ public class Dictionary {
 					return "No notes for this term yet.";
 				}
 				
-				StringBuilder notes = new StringBuilder();
-				this.entries.get(entry).forEach(note -> {
-					notes.append("- " + note.getDescription());
-					notes.append("\n");
-				});	
-				notes.deleteCharAt(notes.length() - 1);
-				
-				return notes.toString();
+				return entry.toString();
 			}
 		}
 		
-		return "";
+		return "Not found.";
+
 	}
 	
 }
