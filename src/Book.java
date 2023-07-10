@@ -13,7 +13,7 @@ public class Book {
 		this.title = title;
 		this.author = author;
 		this.entries = new HashMap<>();
-		entryId = 1;
+		entryId = 0;
 	}
 	
 	public String getTitle() {
@@ -37,16 +37,29 @@ public class Book {
 	}
 	
 	public void addEntry(Term entry) {
-		// TODO - create a class Dictionary,
-		// after instantiating an object of Dictionary, pass it as argument
-		// to setEntries. The method needs to scan the entries and get the ones that
-		// have this book (Entry class has an attribute "entries" that is an array of Books)
-		this.entries.putIfAbsent(this.entryId, entry);
+		if (this.entries.containsValue(entry)) {
+			return;
+		}
 		this.entryId++;
+		this.entries.put(this.entryId, entry);		
 	}
 	
 	public Term searchEntry(int bookId) {
 		return this.entries.getOrDefault(bookId, null);
+	}
+	
+	public void printListOfEntries() {
+		if (this.entryId == 0) {
+			System.out.println("No entries have been added to this book yet");
+		}
+		
+		StringBuilder entriesList = new StringBuilder();
+		
+		this.entries.keySet().forEach(id -> {
+			entriesList.append("\t" + id + " - " + this.entries.get(id).getName() + "\n");
+		});
+		
+		System.out.println(entriesList);
 	}
 }
 

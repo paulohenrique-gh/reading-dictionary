@@ -10,22 +10,22 @@ public class UI {
 		this.dictionary = dictionary;
 		this.shelf = shelf;
 		
-		System.out.println("|====================|");
-		System.out.println("| READING DICTIONARY |");
-		System.out.println("|====================|");
+		System.out.println("|==================|");
+		System.out.println("|READING DICTIONARY|");
+		System.out.println("|==================|");
 	}
 	
 	// Initial menu
 		public void start() {
-					
+							
 			while (true) {
-				System.out.println("Choose an option:");
-				System.out.println("1 - Create new dictionary");
-				System.out.println("2 - Open dictionary");
-				System.out.println("3 - Save dictionary");
-				System.out.println("4 - Export to PDF");
-				System.out.println("5 - Manage shelf");
-				System.out.println("6 - Exit");
+				System.out.println();
+				System.out.println("|=========|");
+				System.out.println("|MAIN MENU|");
+				System.out.println("|=========|");
+				System.out.println("1. Create new dictionary");
+				System.out.println("2. Load dictionary");
+				System.out.println("3. Browse dictionary");				
 				System.out.print(">> ");
 				String input = this.scanner.nextLine();
 				String option = "";
@@ -41,13 +41,9 @@ public class UI {
 				if (option.equals("1")) {
 					createNewDictionary();
 				} else if (option.equals("2")) {
-					openDictionary();
+					// TODO loadDictionary();
 				} else if (option.equals("3")) {
-					// TODO saveDictionary();
-				} else if (option.equals("4")) {
-					// TODO exportToPdf();
-				} else if (option.equals("5")) {
-					// TODO manageShelf();
+					browseDictionary();
 				}
 			}		
 		}
@@ -58,15 +54,17 @@ public class UI {
 		}
 		
 		// Give user new options for using the dictionary
-		public void openDictionary() {
+		public void browseDictionary() {			
 			
 			while (true) {
-				System.out.println("|====================|");
-				System.out.println("1 - Browse by book"); // list all books in shelf
-				System.out.println("2 - Search entry"); // must ask user for id of the entry
-		 		System.out.println("3 - Back to previous menu");
-		 		System.out.println("3 - Back to main menu");
-		 		System.out.println("4 - Exit");
+				System.out.println();
+				System.out.println("|=================|");
+				System.out.println("|BROWSE DICTIONARY|");
+				System.out.println("|=================|");
+				System.out.println("1. View entries by book"); 
+				System.out.println("2. Search entry"); 
+		 		System.out.println("3. Back to previous menu");
+		 		System.out.println("4. Exit");
 				System.out.print(">> ");
 				String input = this.scanner.nextLine();
 				String option = "";
@@ -81,12 +79,12 @@ public class UI {
 				}
 				
 				if (option.equals("1")) {
-					browseByBook();
+					viewEntriesByBook();
+					break;
 				} else if (option.equals("2")) {
 					// TODO searchEntry();
-				} else if (option.equals("3")) {
 					break;
-				} else if (option.equals("4")) {
+				} else if (option.equals("3")) {
 					start();
 					break;
 				}
@@ -94,8 +92,69 @@ public class UI {
 			
 		}
 		
-		public void browseByBook() {
-			// TODO
+		public void viewEntriesByBook() {
+			while (true) {
+				System.out.println();
+				System.out.println("|====================|");
+				System.out.println("|VIEW ENTRIES BY BOOK|");
+				System.out.println("|====================|");
+				
+				// Print list of books in shelf
+				this.shelf.printListOfBooks();
+
+				System.out.println("1. Open book"); 
+		 		System.out.println("2. Back to previous menu");
+		 		System.out.print(">> ");
+		 		String input = this.scanner.nextLine();
+				String option = "";
+		 		if (isNumeric(input)) {
+					option = input;
+				} else {
+					continue;
+				}
+		 		
+		 		if (option.equals("1")) {
+		 			openBook();
+		 			break;
+		 		} else if (option.equals("2")) {
+		 			browseDictionary();
+		 			break;
+		 		}
+			}
+		}
+		
+		public void openBook() {
+			while (true) {
+				System.out.println();
+				System.out.println("|=========|");
+				System.out.println("|OPEN BOOK|");
+				System.out.println("|=========|");
+				System.out.print("Enter book ID: ");
+				String input = this.scanner.nextLine();
+				String option = "";
+		 		if (isNumeric(input)) {
+					option = input;
+				} else {
+					System.out.println("ID should be a number");
+					continue;
+				}
+		 		
+		 		int bookId = Integer.valueOf(option);
+		 		
+				// Print list of entries in book				
+				this.shelf.getBooks().get(bookId).printListOfEntries();
+				
+				openBookSubMenu();
+				
+			}
+		}
+		
+		public boolean openBookSubMenu() {
+			while (true) {
+				System.out.println("1. Open entry");
+				System.out.println("2. Add new entry");
+				System.out.println("3. Back to previous menu");
+			}
 		}
 		
 		public boolean isNumeric(String string) {

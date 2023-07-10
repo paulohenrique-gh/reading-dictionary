@@ -40,5 +40,19 @@ public class Shelf {
 		
 		return authors;
 	}
+	
+	public void printListOfBooks() {
+		if (this.bookId == 0) {
+			System.out.println("No books have been added yet.");
+		}
+		
+		StringBuilder booksList = new StringBuilder();
+		
+		this.books.keySet().forEach(id -> {
+			booksList.append("\t" + id + " - " + this.books.get(id).getTitle() + "\n");
+		});
+		
+		System.out.println(booksList);
+	}
 
 }

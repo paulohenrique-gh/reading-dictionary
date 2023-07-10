@@ -8,7 +8,16 @@ public class Main {
 		Dictionary dictionary = new Dictionary();
 		Shelf shelf = new Shelf();
 		
-		UserInterface ui = new UserInterface(scanner, dictionary, shelf);
+		Book mistborn = new Book("Mistborn", new Author("Brandon Sanderson", shelf));
+		Book darkTower = new Book("The Dark Tower", new Author("Stephen King", shelf));
+		
+		mistborn.addEntry(new Character("Kelsier"));
+		darkTower.addEntry(new Character("Roland"));
+		
+		shelf.addBook(mistborn);
+		shelf.addBook(darkTower);
+		
+		UI ui = new UI(scanner, dictionary, shelf);
 		
 		ui.start();
 						
