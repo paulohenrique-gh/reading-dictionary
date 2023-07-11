@@ -17,12 +17,13 @@ public class Shelf {
 		return this.books;
 	}
 	
-	public void addBook(Book book) {
+	public boolean addBook(Book book) {
 		if (this.books.values().contains(book)) {
-			return;
+			return false;
 		}
 		this.bookId++;
 		this.books.put(this.bookId, book);
+		return true;
 	}
 	
 	public void removeBook(int id) {
@@ -50,6 +51,23 @@ public class Shelf {
 		
 		this.books.keySet().forEach(id -> {
 			booksList.append("\t" + id + " - " + this.books.get(id).getTitle() + "\n");
+		});
+		
+		System.out.println(booksList);
+	}
+	
+	public void printListOfBooksByEntryId(int entryId) {
+		if (this.books.isEmpty()) {
+			System.out.println("This entry isn't associated with any book yet");
+			return;
+		}
+		
+		StringBuilder booksList = new StringBuilder();
+		this.books.keySet().forEach(id -> {
+			Book book = this.books.get(id);
+			if (book.getEntries().containsKey(entryId)) {
+				booksList.append("\t" + id + " - " + book.getTitle() + "\n");
+			}
 		});
 		
 		System.out.println(booksList);

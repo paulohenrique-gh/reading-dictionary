@@ -11,14 +11,14 @@ public class Dictionary {
 	}
 
 	// Add entry to dictionary.
-	public void addEntry(Term entry) {
-		if (this.entries.containsKey(entry)) {
-			return;
-		}
-		
-		this.entries.put(entry, entry.getNotes());
-		System.out.println("Entry added");
-	}
+//	public void addEntry(Term entry) {
+//		if (this.entries.containsKey(entry)) {
+//			return;
+//		}
+//		
+//		this.entries.put(entry, entry.getNotes());
+//		System.out.println("Entry added");
+//	}
 	
 	public String search(String search){
 		

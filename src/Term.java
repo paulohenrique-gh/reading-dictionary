@@ -1,19 +1,25 @@
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Term {
 	
 	private String name;
 	private List<String> nicknames;
-	private List<Book> books;
-	private List<Note> notes;
+	private Map<Integer, Book> books;
+	private Map<Integer, Note> notes;
+	private int bookId;
+	private int noteId;
 	
 	public Term(String name) {
 		this.name = name;
 		this.nicknames = new ArrayList<>();
-		this.books = new ArrayList<>();
-		this.notes = new ArrayList<>();
+		this.books = new HashMap<>();
+		this.notes = new HashMap<>();
+		this.bookId = 0;
+		this.noteId = 0;
 	}
 	
 	public String getName() {
@@ -36,46 +42,68 @@ public class Term {
 		this.nicknames.add(nickname);
 	}
 	
-	public List<Book> getBooks() {
+	public Map<Integer, Book> getBooks() {
 		return this.books;
 	}
 	
-	public void addBook(Book book) {
-		if (this.books.contains(book)) {
+	public boolean addBook(Book book) {
+		if (this.books.containsValue(book)) {
+			return false;
+		}
+		this.bookId++;
+		this.books.put(this.bookId, book);
+		return true;
+	}
+	
+	public boolean removeBookById(int bookId) {
+		return this.books.remove(bookId, this.books.get(bookId));
+	}
+	
+	public void printListOfBooks() {
+		if (this.books.isEmpty()) {
+			System.out.println("\tThis entry has no books associated");
 			return;
 		}
 		
-		this.books.add(book);
+		StringBuilder booksList = new StringBuilder();
+		
+		this.books.keySet().forEach(id -> {
+			Book book = this.books.get(id);
+			booksList.append("\t" + id + " - " + book.getTitle() + "\n");
+		});
+		
+		System.out.println(booksList);
 	}
 	
-	public List<Note> getNotes() {
+	public Map<Integer, Note> getNotes() {
 		return this.notes;
 	}
 	
 	public void addNote(Note note) {
-		this.notes.add(note);
+		this.noteId++;
+		this.notes.put(this.noteId, note);
 	}
 	
 	@Override
 	public String toString() {
 		StringBuilder fullEntry = new StringBuilder();
-		fullEntry.append(this.name + ": \n");
-		fullEntry.append("Also known as: \n");
-		this.nicknames.forEach(nickname -> {
-			fullEntry.append("- " + nickname);
+		fullEntry.append("\t" + this.name + " \n");
+		fullEntry.append("\tBooks: \n");
+		this.books.keySet().forEach(id -> {
+			Book book = this.books.get(id);
+			fullEntry.append("\t- " + book.getTitle());
 			fullEntry.append("\n");
 		});
-		fullEntry.append("Books featuring " + this.name + ": \n");
-		this.books.forEach(book -> {
-			fullEntry.append("- " + book.getTitle());
-			fullEntry.append("\n");
-		});
-		fullEntry.append("Your notes on " + this.getName() + ": \n");
-		this.notes.forEach(note -> {
-			fullEntry.append("- " + note.getDescription());
+		fullEntry.append("\tYour notes on " + this.getName() + ": \n");
+		this.notes.keySet().forEach(id -> {
+			Note note = this.notes.get(id);
+			fullEntry.append("\t- " + note.getDescription());
 			fullEntry.append("\n");
 		});
 		
 		return fullEntry.toString();
 	}
+	
+	
+	
 }

@@ -39,4 +39,8 @@ public class Author {
 		
 		this.books.add(book);
 	}
+	
+	public List<Book> getBooks() {
+		return this.books;
+	}
 }

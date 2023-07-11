@@ -131,30 +131,226 @@ public class UI {
 				System.out.println("|=========|");
 				System.out.print("Enter book ID: ");
 				String input = this.scanner.nextLine();
-				String option = "";
-		 		if (isNumeric(input)) {
-					option = input;
-				} else {
-					System.out.println("ID should be a number");
-					continue;
+		 		if (!isNumeric(input)) {
+		 			System.out.println("ID should be a number");
+					continue;			
 				}
 		 		
-		 		int bookId = Integer.valueOf(option);
-		 		
+		 		int bookId = Integer.valueOf(input);;
+		 	
 				// Print list of entries in book				
 				this.shelf.getBooks().get(bookId).printListOfEntries();
 				
-				openBookSubMenu();
+				openBookSubMenu(bookId);
+				break;
 				
 			}
 		}
 		
-		public boolean openBookSubMenu() {
+		public void openBookSubMenu(int bookId) {
 			while (true) {
 				System.out.println("1. Open entry");
 				System.out.println("2. Add new entry");
 				System.out.println("3. Back to previous menu");
+				String option = this.scanner.nextLine();
+				if (!isNumeric(option)) {
+					continue;
+				} 
+				
+				if (option.equals("1")) {
+					openEntry(bookId);
+					break;
+				}
 			}
+		}
+		
+		public void openEntry(int bookId) {
+			while (true) {
+				System.out.println();
+				System.out.println("|==========|");
+				System.out.println("|OPEN ENTRY|");
+				System.out.println("|==========|");
+				System.out.print("Enter entry ID: ");
+				String input = this.scanner.nextLine();
+		 		if (!isNumeric(input)) {
+		 			System.out.println("ID should be a number");
+					continue;			
+				}
+		 		
+		 		int entryId = Integer.valueOf(input);
+		 		
+		 		this.shelf.getBooks().get(bookId).printEntryById(entryId);
+		 		openEntrySubMenu(bookId, entryId);
+			}
+		}
+		
+		public void openEntrySubMenu(int bookId, int entryId) {
+			while (true) {
+				System.out.println("1. Edit entry");
+				System.out.println("2. Delete entry");
+				System.out.println("3. Back to previous menu");
+				String option = this.scanner.nextLine();
+				if (!isNumeric(option)) {
+					continue;
+				} 
+				
+				if (option.equals("1")) {
+					editEntry(bookId, entryId);
+					break;
+				}
+			}
+		}
+		
+		public void editEntry(int bookId, int entryId) {
+			while (true) {
+				System.out.println();
+				System.out.println("|==========|");
+				System.out.println("|EDIT ENTRY|");
+				System.out.println("|==========|");
+				System.out.println("1. Edit name");
+				System.out.println("2. Edit books");
+				System.out.println("3. Edit notes");
+				System.out.println("4. Back to previous menu");
+				String option = this.scanner.nextLine();
+				if (!isNumeric(option)) {
+					continue;
+				}
+				
+				if (option.equals("1")) {
+					editName(bookId, entryId);
+				} 
+				if (option.equals("2")){
+					editBooks(bookId, entryId);
+				}
+			}
+		}
+		
+		public void editName(int bookId, int entryId) {
+			while (true) {
+				System.out.println();
+				System.out.println("|=========|");
+				System.out.println("|EDIT NAME|");
+				System.out.println("|=========|");
+				System.out.print("Enter new name: ");
+				String input = this.scanner.nextLine();
+				if (input.isEmpty()) {
+					continue;
+				}
+				
+				this.shelf.getBooks()
+					.get(bookId)
+					.getEntries()
+					.get(entryId)
+					.setName(input);
+				
+				System.out.println("Entry name set to "
+						+ this.shelf.getBooks()
+							.get(bookId)
+							.getEntries()
+							.get(entryId)
+							.getName());
+				break;
+			}
+		}
+		
+		public void editBooks(int bookId, int entryId) {
+			while (true) {
+				System.out.println();
+				System.out.println("|==========|");
+				System.out.println("|EDIT BOOKS|");
+				System.out.println("|==========|");
+				
+				this.shelf
+					.getBooks()
+					.get(bookId)
+					.getEntries()
+					.get(entryId)
+					.printListOfBooks();
+				
+				editBooksSubMenu(bookId, entryId);
+			}
+		}
+		
+		public void editBooksSubMenu(int bookId, int entryId) {
+			while (true) {
+				System.out.println("1. Add new book");
+				System.out.println("2. Remove book");
+				System.out.println("3. Back to previous menu");
+				String option = this.scanner.nextLine();
+				if (option.isEmpty()) {
+					continue;
+				}
+				
+				if (option.equals("1")) {
+					addNewBookToEntry(bookId, entryId);
+				}
+				if (option.equals("2")) {
+					removeBookFromEntry(bookId, entryId);
+				}
+				if (option.equals("3")) {
+					editEntry(bookId, entryId);
+					break;
+				}
+			}
+		}
+		
+		public void addNewBookToEntry(int bookId, int entryId) {
+			while (true) {
+				System.out.println();
+				System.out.println("|============|");
+				System.out.println("|ADD NEW BOOK|");
+				System.out.println("|============|");
+				System.out.print("Enter book title: ");
+				String title = this.scanner.nextLine();
+				System.out.print("Enter name of the author: ");
+				String authorName = this.scanner.nextLine();
+				
+				Author author = new Author(authorName, this.shelf);
+				Book book = new Book(title, author);
+				this.shelf.addBook(book);
+				if (!this.shelf.getBooks()
+					.get(bookId)
+					.getEntryById(entryId)
+					.addBook(book)) {
+					System.out.println("Book already associated with entry");
+					continue;
+				}
+				
+				System.out.println("Entry associated with the book " + book.getTitle());
+				break;
+			}
+			
+			editBooks(bookId, entryId);
+		}
+		
+		public void removeBookFromEntry(int bookId, int entryId) {
+			while (true) {
+				System.out.println();
+				System.out.println("|======================|");
+				System.out.println("|REMOVE BOOK FROM ENTRY|");
+				System.out.println("|======================|");
+				System.out.print("Enter book ID: ");
+				String input = this.scanner.nextLine();
+				if (!isNumeric(input)) {
+					continue;
+				}
+				
+				int bookToRemoveId = Integer.valueOf(input);
+				
+				if (!this.shelf.getBooks()
+						.get(bookId)
+						.getEntries()
+						.get(entryId)
+						.removeBookById(bookToRemoveId)) {
+					System.out.println("Book not found.");
+					continue;
+				}
+				
+				System.out.println("Book removed from entry");
+				break;
+			}
+			
+			editBooks(bookId, entryId);
 		}
 		
 		public boolean isNumeric(String string) {

@@ -36,11 +36,16 @@ public class Book {
 		return this.entries;
 	}
 	
+	public Term getEntryById(int entryId) {
+		return this.entries.getOrDefault(entryId, null);
+	}
+	
 	public void addEntry(Term entry) {
 		if (this.entries.containsValue(entry)) {
 			return;
 		}
 		this.entryId++;
+		entry.addBook(this);
 		this.entries.put(this.entryId, entry);		
 	}
 	
@@ -60,6 +65,19 @@ public class Book {
 		});
 		
 		System.out.println(entriesList);
+	}
+	
+	public void printEntryById(int entryId) {
+		if (!this.entries.containsKey(entryId)) {
+			System.out.println("Entry not found");
+			return;
+		}
+		
+		System.out.println(this.entries.get(entryId).toString());
+	}
+	
+	public boolean containsEntry(int entryId) {
+		return this.entries.containsKey(entryId);
 	}
 }
 
