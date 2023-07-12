@@ -5,7 +5,7 @@
 The main purpose of this project is to put some recently learned Java concepts into practice
 
 ## Description:
-Create a dictionary with personal descriptions of characters, places and other terms that may come up in a book you are reading. Pontetially useful for books that have several characters and extensive world building
+Create a dictionary with personal descriptions of characters, places and other terms that may come up in a book you are reading. Potentially useful for books that have several characters and extensive world building
 
 ## Todo:
 

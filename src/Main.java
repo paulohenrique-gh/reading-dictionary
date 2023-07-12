@@ -5,22 +5,62 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Scanner scanner = new Scanner(System.in);
+		
+		Note note = new Note("Description");
+		
+		System.out.println("Note description: " + note.getDescription());
+		note.setDescription("New description");
+		System.out.println("New note description: " + note.getDescription());
+		
+		Entry entry = new Entry("Nonono");
+		System.out.println("Entry name: " + entry.getName());
+		System.out.println("Entry name: " + entry.getName());
+		System.out.println(entry);
+		entry.addNote(note);
+		System.out.println(entry);
+		
+		Note note2 = new Note("Second description");
+		entry.addNote(note2);
+		System.out.println(entry);
+		
+		entry.removeNote(note);
+		System.out.println(entry);
+		
+		for (int id : entry.getNotes().keySet()) {
+			System.out.println(entry.getNotes().get(id).getDescription());
+		}
+		
+		System.out.println("current first letter: " + entry.getFirstLetter());
+		
+		System.out.println("new name: " + entry.getName());
+		System.out.println("new first letter: " + entry.getFirstLetter());
+		
+		
 		Dictionary dictionary = new Dictionary();
-		Shelf shelf = new Shelf();
 		
-		Book mistborn = new Book("Mistborn", new Author("Brandon Sanderson", shelf));
-		Book darkTower = new Book("The Dark Tower", new Author("Stephen King", shelf));
+		System.out.println("Added? " + dictionary.addEntry(entry));
+		System.out.println("is entry in dictionary: " + dictionary.isInDictionary(entry));
 		
-		mistborn.addEntry(new Character("Kelsier"));
-		darkTower.addEntry(new Character("Roland"));
+		Entry newEntry1 = new Entry("Entry 1");
+		Entry newEntry2 = new Entry("Entry 2");
+		Entry newEntry3 = new Entry("Entry 3");
+		Entry newEntry4 = new Entry("Entry 4");
+		Entry newEntry5 = new Entry("Entry 5");
+		Entry newEntry6 = new Entry("Entry 6");
 		
-		shelf.addBook(mistborn);
-		shelf.addBook(darkTower);
+		dictionary.addEntry(newEntry1);
+		dictionary.addEntry(newEntry2);
+		dictionary.addEntry(newEntry3);
+		dictionary.addEntry(newEntry4);
+		dictionary.addEntry(newEntry5);
+		dictionary.addEntry(newEntry6);
 		
-		UI ui = new UI(scanner, dictionary, shelf);
+		dictionary.printEntriesByFirstLetter(newEntry1.getFirstLetter());
 		
-		ui.start();
-						
+		System.out.println(dictionary.addEntry(new Entry("new new new entry")));
+		
+		dictionary.printEntriesByFirstLetter('n');
+			
 	}
 
 }
