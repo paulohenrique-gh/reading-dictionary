@@ -16,6 +16,11 @@ public class Entry {
 		this.firstLetter = name.charAt(0);
 	}
 	
+	public Entry(String name, Note note) {
+		this(name);
+		this.addNote(note);
+	}
+	
 	public String getName() {
 		return this.name;
 	}
@@ -24,7 +29,7 @@ public class Entry {
 		return this.notes;
 	}
 	
-	public int getNoteId(Note note) {
+	public int getNoteById(Note note) {
 		for (int id : this.notes.keySet()) {
 			if (this.notes.get(id).equals(note)) {
 				return id;
@@ -44,7 +49,7 @@ public class Entry {
 	}
 	
 	public boolean removeNote(Note note) {
-		int id = getNoteId(note);
+		int id = getNoteById(note);
 		if (id == -1) {
 			return false;
 		}
@@ -78,5 +83,12 @@ public class Entry {
 		return fullEntry.toString();
 	}
 	
+	public void printEntry() {
+		System.out.println(this + "\n");
+	}
+	
+	public int getNoteQuantity() {
+		return this.noteId;
+	}
 	
 }

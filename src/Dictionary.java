@@ -14,8 +14,8 @@ public class Dictionary {
 		}
 	}
 	
-	public boolean addEntry(Entry entry) {
-		if (isInDictionary(entry)) {
+	public boolean addEntry(char letter, Entry entry) {
+		if (isInDictionary(letter, entry)) {
 			return false;
 		}
 		
@@ -24,14 +24,14 @@ public class Dictionary {
 		return true;
 	}
 	
-	public boolean isInDictionary(Entry entry) {
-		return this.entries.get(entry.getFirstLetter()).containsValue(entry);
+	public boolean isInDictionary(char letter, Entry entry) {
+		return this.entries.get(letter).containsValue(entry);
 	}
 	
 	public boolean printEntriesByFirstLetter(char firstLetter) {
 		StringBuilder entriesList = new StringBuilder();
 		
-		if (!this.entries.keySet().contains(firstLetter)) {
+		if (!this.entries.keySet().contains(Character.toLowerCase(firstLetter))) {
 			System.out.println("\n\tInput provided was not a valid letter.\n");
 			return false;
 		}
@@ -54,7 +54,23 @@ public class Dictionary {
 		return true;
 	}
 	
-	public int getEntryId() {
+	public int getSizeInLetter() {
 		return this.entryId;
 	}
+	
+	public Entry getEntry(char letter, int entryId) {
+		return this.entries.get(letter).get(entryId);
+	}
+	
+	public boolean removeEntry(char letter, int entryId) {
+		this.entries.get(letter).remove(entryId);
+		
+		if (isInDictionary(letter, this.getEntry(letter, entryId))) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+
 }

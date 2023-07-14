@@ -86,10 +86,13 @@ public class Main {
 		Entry entry2 = new Entry("A Test entry");
 		Entry entry3 = new Entry("B Test entry");
 		Entry entry4 = new Entry("B Test entry");
-		dict.addEntry(entry1);
-		dict.addEntry(entry2);
-		dict.addEntry(entry3);
-		dict.addEntry(entry4);
+		dict.addEntry(entry1.getFirstLetter(), entry1);
+		dict.addEntry(entry2.getFirstLetter(), entry2);
+		dict.addEntry(entry3.getFirstLetter(), entry3);
+		dict.addEntry(entry4.getFirstLetter(), entry4);
+		
+//		System.out.println(dict.printEntriesByFirstLetter('A'));
+		System.out.println(dict.getEntry(entry1.getFirstLetter(),1).toString());
 		
 		ui.start();
 		
