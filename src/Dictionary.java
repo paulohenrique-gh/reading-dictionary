@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Dictionary {
@@ -22,6 +24,17 @@ public class Dictionary {
 		this.entryId++;
 		this.entries.get(entry.getFirstLetter()).put(this.entryId, entry);
 		return true;
+	}
+	
+	public List<Entry> getAllEntries() {
+		List<Entry> entriesList = new ArrayList<>();
+		
+		this.entries.keySet().forEach(c -> {
+			this.entries.get(c).values().forEach(e -> {
+				entriesList.add(e);
+			});
+		});
+		return entriesList;
 	}
 	
 	public boolean isInDictionary(char letter, Entry entry) {

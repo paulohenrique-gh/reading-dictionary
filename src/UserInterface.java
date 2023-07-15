@@ -70,7 +70,8 @@ public class UserInterface {
 				continue;
 			}
 			if (option.equals("4")) {
-				break;
+				printMenuHeader("EXIT");
+				System.exit(0);;
 			}
 			
 		}
@@ -99,8 +100,10 @@ public class UserInterface {
 		};
 		
 		while (true) {
-			System.out.print("Enter letter from A to Z: ");
+			System.out.print("Enter letter from A to Z or 0 to go to previous menu: ");
 			char letter = this.scanner.nextLine().charAt(0);
+			
+			if (letter == '0') start();
 			
 			// WIP finish condition
 			if (this.dictionary.printEntriesByFirstLetter(letter)) {
@@ -126,7 +129,6 @@ public class UserInterface {
 					continue;
 				}
 				if (option.equals("2")) {				
-					// WIP
 					addEntry();
 					continue;
 				}
@@ -134,6 +136,17 @@ public class UserInterface {
 					break;
 				}
 
+			} else {
+				System.out.print("Add entry? (y/n): ");
+				String option = this.scanner.nextLine().toLowerCase();
+				if (option.equals("y")) { 
+					addEntry();
+					continue;
+				}
+				if (option.equals("n")) {
+					start();
+					break;
+				}
 			}
 		}
 		
@@ -281,6 +294,7 @@ public class UserInterface {
 		
 		if (this.dictionary.addEntry(entry.getFirstLetter(), entry)) {
 			System.out.println("\n\tEntry added successfully\n");
+			openDictionary();
 		} else {
 			System.out.println("\n\tAn error has ocorred\n");
 			addEntry();
