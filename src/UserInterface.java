@@ -66,7 +66,8 @@ public class UserInterface {
 				continue;
 			}
 			if (option.equals("3")) {
-				// TODO
+				// WIP - save to CSV
+				this.dictionary.saveToCsv();
 				continue;
 			}
 			if (option.equals("4")) {
@@ -88,7 +89,7 @@ public class UserInterface {
 		return this.dictionary;
 	}
 	
-	// WIP
+
 	// Option 1 in the main menu
 	public void openDictionary() {
 		printMenuHeader("OPEN DICTIONARY");
@@ -104,8 +105,7 @@ public class UserInterface {
 			char letter = this.scanner.nextLine().charAt(0);
 			
 			if (letter == '0') start();
-			
-			// WIP finish condition
+
 			if (this.dictionary.printEntriesByFirstLetter(letter)) {
 				
 				printMenuOptions(menuOptions);				
@@ -153,7 +153,6 @@ public class UserInterface {
 	}
 
 	// Open options for what to do with an entry
-	// WIP
 	public void openEntry(char letter, int entryId) {
 		printMenuHeader("OPEN ENTRY");
 		

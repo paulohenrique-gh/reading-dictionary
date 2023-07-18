@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Entry {
@@ -27,6 +29,16 @@ public class Entry {
 	
 	public Map<Integer, Note> getNotes() {
 		return this.notes;
+	}
+	
+	public List<Note> getNotesAsList() {
+		List<Note> notes = new ArrayList<>();
+		
+		this.notes.keySet().forEach(id -> {
+			notes.add(this.notes.get(id));
+		});
+		
+		return notes;
 	}
 	
 	public int getNoteById(Note note) {

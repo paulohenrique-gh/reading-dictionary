@@ -85,5 +85,11 @@ public class Dictionary {
 		return true;
 	}
 	
+	public void saveToCsv() {
+		FileHandler writer = new FileHandler();
+		writer.writeDictToCsv(this);		
+	}
+	
+	
 
 }
