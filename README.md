@@ -11,7 +11,7 @@ Create a dictionary with personal descriptions of characters, places and other t
 
 - [x] Create main classes and methods
 - [x] Create terminal user interface
-- [ ] Output dictionary to csv file - WIP 
+- [x] Output dictionary to CSV file 
 - [ ] (optional) Implement option to export dictionary to PDF
 - [ ] (optional) Create graphical user interface with Java Swing
 

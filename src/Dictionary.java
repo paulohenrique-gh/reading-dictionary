@@ -16,8 +16,8 @@ public class Dictionary {
 		}
 	}
 	
-	public boolean addEntry(char letter, Entry entry) {
-		if (isInDictionary(letter, entry)) {
+	public boolean addEntry(Entry entry) {
+		if (isInDictionary(entry.getFirstLetter(), entry)) {
 			return false;
 		}
 		

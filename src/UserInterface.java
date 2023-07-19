@@ -1,22 +1,14 @@
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-/**
- * @author ph192
- *
- */
-/**
- * @author ph192
- *
- */
 public class UserInterface {
 	
 	private Scanner scanner;
 	private Dictionary dictionary;
 	
 	// Constructor takes a scanner and a dictionary object
-	public UserInterface(Scanner scanner, Dictionary dictionary) {
+	public UserInterface(Scanner scanner) {
 		this.scanner = scanner;
-		this.dictionary = dictionary;
 	}
 	
 	// Print header for the menus
@@ -57,6 +49,12 @@ public class UserInterface {
 			}
 			
 			if (option.equals("1")) {
+				try {
+					FileHandler handler = new FileHandler();
+					this.dictionary = handler.readCsv("new_dictionary.csv");
+				} catch (FileNotFoundException e) {
+					System.out.println("\tError. File not found.");
+				}
 				openDictionary();
 				continue;
 			}
@@ -66,7 +64,6 @@ public class UserInterface {
 				continue;
 			}
 			if (option.equals("3")) {
-				// WIP - save to CSV
 				this.dictionary.saveToCsv();
 				continue;
 			}
@@ -74,9 +71,8 @@ public class UserInterface {
 				printMenuHeader("EXIT");
 				System.exit(0);;
 			}
-			
 		}
-		
+	
 	}
 	
 	// Set new dictionary. Used by option Create new Dictionary in the main menu
@@ -87,8 +83,7 @@ public class UserInterface {
 	// Return dictionary reference
 	public Dictionary getDictionary() {
 		return this.dictionary;
-	}
-	
+	}	
 
 	// Option 1 in the main menu
 	public void openDictionary() {
@@ -291,7 +286,7 @@ public class UserInterface {
 		Note note = new Note(description);
 		Entry entry = new Entry(name, note);
 		
-		if (this.dictionary.addEntry(entry.getFirstLetter(), entry)) {
+		if (this.dictionary.addEntry(entry)) {
 			System.out.println("\n\tEntry added successfully\n");
 			openDictionary();
 		} else {
