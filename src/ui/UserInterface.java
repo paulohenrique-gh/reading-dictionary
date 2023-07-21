@@ -1,5 +1,11 @@
+package ui;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+
+import entities.Dictionary;
+import entities.Entry;
+import entities.FileHandler;
+import entities.Note;
 
 public class UserInterface {
 	

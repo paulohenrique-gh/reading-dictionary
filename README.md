@@ -2,10 +2,15 @@
 
 ## Language: Java
 
-The main purpose of this project is to put some recently learned Java concepts into practice
+A simple application that helps keeping track of characters and other terms in a book.
+It loads a local file "new_dictionary.csv" that contains the previously saved entries.
 
-## Description:
-Create a dictionary with personal descriptions of characters, places and other terms that may come up in a book you are reading. Potentially useful for books that have several characters and extensive world building
+This project was made to consolidate some of the knowledge gained from studying Java for the past few months.
+Some concepts involved:
+	- General object-oriented programming principals
+	- Operations with arrays, lists and maps
+	- The StringBuilder class
+	- File input/output
 
-![text](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGd3MHBydmsyYmFpYnkyMGZwazAyamc0Mm5mMTI1NDQ1MWhiZ2FjeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LE2O1KwWbibYQUY5RK/giphy.gif)
+![demo](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGd3MHBydmsyYmFpYnkyMGZwazAyamc0Mm5mMTI1NDQ1MWhiZ2FjeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LE2O1KwWbibYQUY5RK/giphy.gif)
 
