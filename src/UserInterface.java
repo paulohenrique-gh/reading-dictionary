@@ -269,13 +269,6 @@ public class UserInterface {
 		
 	}	
 	
-
-	/**
-	 * <b>Menu path</b>: Main menu > 1 - Open Dictionary > 2 - Add new entry
-	 * <p>
-	 * Load menu to add a new entry.
-	 * This method asks the user to enter a name and a note for the new entry, and then add it to the dictionary.
-	 */
 	public void addEntry() {
 		printMenuHeader("ADD ENTRY");
 		

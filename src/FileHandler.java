@@ -28,7 +28,7 @@ public class FileHandler {
 				csvWriter.append("\"");
 				csvWriter.append("\n");
 			}			
-			System.out.println("\tSaved successfully as new_dictionary.csv");
+			System.out.println("\tSaved successfully as new_dictionary.csv\n");
 			csvWriter.close();
 			
 		} catch (IOException e) {
